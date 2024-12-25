@@ -28,22 +28,19 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(context) {
+    double width = MediaQuery.of(context).size.width;
     final curquestion = flutterQuizQuestions[idx];
-    return Container(
-      margin: const EdgeInsets.all(50),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    var qText = Text(
+        textAlign: TextAlign.center,
+        curquestion.question,
+        style: GoogleFonts.lato(
+            fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+      );
+    var optionsButton = Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        // textBaseline: TextBaseline.values[0],
         children: [
-          Text(
-            textAlign: TextAlign.center,
-            curquestion.question,
-            style: GoogleFonts.lato(
-                fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
           ...curquestion.getShuffeledOptions().map(
             (item) {
               return OptionModel(
@@ -55,7 +52,39 @@ class _QuestionScreenState extends State<QuestionScreen> {
             },
           )
         ],
+      );
+    var children = [
+      qText,
+      const SizedBox(
+        height: 20,
       ),
-    );
+      optionsButton
+    ];
+    if (width < 636)
+      return Container(
+          margin: const EdgeInsets.all(50),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              qText,
+              const SizedBox(
+                height: 20,
+              ),
+              optionsButton
+            ],
+          ));
+    else
+      return Container(
+        margin: const EdgeInsets.all(50),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(child: qText),
+            Expanded(child: optionsButton)
+          ],
+        ),
+      );
   }
 }
