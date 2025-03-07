@@ -14,28 +14,32 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  final List<String> selectedOption=[];
+  final List<String> selectedOption = [];
 
-  void selectOption(String option){
+  void selectOption(String option) {
     selectedOption.add(option);
   }
+
   Widget? screen;
   @override
   void initState() {
     super.initState();
-    screen =  StartScreen(swStart);
+    screen = StartScreen(swStart);
   }
 
   void swStart() {
     setState(() {
-      screen = QuestionScreen(swQuestions,selectOption);
+      screen = QuestionScreen(swQuestions, selectOption);
     });
   }
+
   // screen=StartScreen(swStart);
-  void swQuestions() {
+  void swQuestions() async {
     setState(() {
-      screen = ResultScreen(swResult,selectedOption);
+      screen = ResultScreen(swResult, selectedOption);
     });
+
+    // Transition to ResultScreen only if user confirmed
   }
 
   void swResult() {
@@ -44,7 +48,6 @@ class _QuizState extends State<Quiz> {
       selectedOption.clear();
     });
   }
-
 
   @override
   Widget build(contex) {

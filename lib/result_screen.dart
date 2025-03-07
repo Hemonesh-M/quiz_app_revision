@@ -24,6 +24,7 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
+    // double width = MediaQuery.of(context).size.width;
     List<Map<String, Object>> optionSummary = getoptionsSummary();
     final numberOfQuestions = flutterQuizQuestions.length;
     final correctAnswer = optionSummary.where((data) {
@@ -35,57 +36,52 @@ class ResultScreen extends StatelessWidget {
     //     correctAnswer++;
     //   }
     // }
+    var resultText = Text(
+      "ResultScreen",
+      textAlign: TextAlign.center,
+      style: GoogleFonts.lato(
+          fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+    );
+    var qCorrectText = Text(
+      "You Answered $correctAnswer Questions Correctly Out Of $numberOfQuestions Questions",
+      textAlign: TextAlign.center,
+      style: GoogleFonts.lato(
+          fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
+    );
+    var container = Container(
+      padding: EdgeInsets.all(8),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+      child: OutlinedButton.icon(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: const Color.fromARGB(255, 112, 39, 176),
+        ),
+        onPressed: swResult,
+        label: Text(
+          "Resart Quiz",
+          style: GoogleFonts.lato(
+              fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        icon: Icon(
+          Icons.restart_alt_outlined,
+          color: Colors.white,
+          size: 50,
+        ),
+      ),
+    );
     return Container(
       margin: const EdgeInsets.only(left: 5, top: 40),
       child: Container(
         padding: EdgeInsets.all(8),
         margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: ListView(
           children: [
-            Text(
-              "ResultScreen",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.lato(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "You Answered $correctAnswer Questions Correctly Out Of $numberOfQuestions Questions",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.lato(
-                  fontSize: 24,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
+            resultText,
+            qCorrectText,
             SizedBox(height: 20),
             // ACTUAL SUMMARY
             SummaryResult(optionSummary),
             SizedBox(height: 20),
-            Container(
-              padding: EdgeInsets.all(8),
-              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
-              child: OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 112, 39, 176),
-                ),
-                onPressed: swResult,
-                label: Text(
-                  "Resart Quiz",
-                  style: GoogleFonts.lato(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-                icon: Icon(
-                  Icons.restart_alt_outlined,
-                  color: Colors.white,
-                  size: 50,
-                ),
-              ),
-            )
+            container
           ],
         ),
       ),
