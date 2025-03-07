@@ -73,16 +73,18 @@ class ResultScreen extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(8),
         margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
-        child: ListView(
-          children: [
-            resultText,
-            qCorrectText,
-            SizedBox(height: 20),
-            // ACTUAL SUMMARY
-            SummaryResult(optionSummary),
-            SizedBox(height: 20),
-            container
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              resultText,
+              qCorrectText,
+              SizedBox(height: 20),
+              // ACTUAL SUMMARY
+              SummaryResult(optionSummary),
+              SizedBox(height: 20),
+              container
+            ],
+          ),
         ),
       ),
     );
