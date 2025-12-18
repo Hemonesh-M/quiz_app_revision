@@ -68,7 +68,9 @@ class ResultScreen extends StatelessWidget {
         ),
       ),
     );
-    return Container(
+    return Scaffold(
+    backgroundColor: Colors.transparent, // Keeps your gradient from quiz.dart
+    body: Container(
       margin: const EdgeInsets.only(left: 5, top: 40),
       child: Container(
         padding: EdgeInsets.all(8),
@@ -86,6 +88,7 @@ class ResultScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }
