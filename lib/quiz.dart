@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app_revision/start_screen.dart';
 import 'package:quiz_app_revision/question_screen.dart';
 import 'package:quiz_app_revision/result_screen.dart';
@@ -34,7 +35,7 @@ class _QuizState extends State<Quiz> {
   }
 
   // screen=StartScreen(swStart);
-  void swQuestions()  {
+  void swQuestions() {
     setState(() {
       screen = ResultScreen(swResult, selectedOption);
     });
@@ -50,15 +51,54 @@ class _QuizState extends State<Quiz> {
   }
 
   @override
-  Widget build(contex) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        // 1. Unified Gradient AppBar
+        appBar: AppBar(
+          title: Text(
+            "Quiz Pro",
+            // style: TextStyle(
+            //   color: Colors.white
+            // ),
+            style: GoogleFonts.lato(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              letterSpacing: 1.2,
+              color: Colors.white,
+            ),
+          ),
+          centerTitle: true,
+          elevation: 4, // Adds a slight shadow for depth
+          shadowColor: Colors.black.withOpacity(0.5),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 63, 11, 147), // Slightly brighter for top
+                  Colors.deepPurple,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.help_outline, color: Colors.white70),
+              onPressed: () {}, // Optional: Add a help icon
+            ),
+          ],
+        ),
+
+        // 2. Main Body with matching background
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-                colors: [Colors.deepPurple, Color.fromARGB(255, 9, 2, 75)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight),
+              colors: [Colors.deepPurple, Color.fromARGB(255, 9, 2, 75)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
           child: Center(child: screen),
         ),

@@ -22,30 +22,30 @@ class _QuestionScreenState extends State<QuestionScreen> {
         idx++;
         widget.selectOption(option);
         if (idx == flutterQuizQuestions.length) {
-          showDialog(
-            context: context,
-            builder: (cntx) {
-              return Expanded(
-                child: AlertDialog(
-                  title: Text("Submit Quiz"),
-                  content: Text(
-                      "Are you sure you want to submit the quiz and view results?"),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(cntx)
-                          .pop(false), // User chooses "Cancel"
-                      child: Text("Cancel"),
-                    ),
-                    TextButton(
-                      onPressed: () =>
-                          Navigator.of(cntx).pop(true), // User chooses "OKAY"
-                      child: Text("OKAY"),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
+          // showDialog(
+          //   context: context,
+          //   builder: (cntx) {
+          //     return Expanded(
+          //       child: AlertDialog(
+          //         title: Text("Submit Quiz"),
+          //         content: Text(
+          //             "Are you sure you want to submit the quiz and view results?"),
+          //         actions: [
+          //           TextButton(
+          //             onPressed: () => Navigator.of(cntx)
+          //                 .pop(false), // User chooses "Cancel"
+          //             child: Text("Cancel"),
+          //           ),
+          //           TextButton(
+          //             onPressed: () =>
+          //                 Navigator.of(cntx).pop(true), // User chooses "OKAY"
+          //             child: Text("OKAY"),
+          //           ),
+          //         ],
+          //       ),
+          //     );
+          //   },
+          // );
           widget.swQuestions();
         }
       },
