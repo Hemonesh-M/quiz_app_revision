@@ -34,7 +34,7 @@ class _QuizState extends State<Quiz> {
   }
 
   // screen=StartScreen(swStart);
-  void swQuestions() async {
+  void swQuestions()  {
     setState(() {
       screen = ResultScreen(swResult, selectedOption);
     });
