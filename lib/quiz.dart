@@ -53,6 +53,7 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         // 1. Unified Gradient AppBar
         appBar: AppBar(
@@ -70,7 +71,7 @@ class _QuizState extends State<Quiz> {
           ),
           centerTitle: true,
           elevation: 4, // Adds a slight shadow for depth
-          shadowColor: Colors.black.withOpacity(0.5),
+          // shadowColor: Colors.black.withValues(colorSpace: Colors.),
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -83,12 +84,12 @@ class _QuizState extends State<Quiz> {
               ),
             ),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.help_outline, color: Colors.white70),
-              onPressed: () {}, // Optional: Add a help icon
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     icon: const Icon(Icons.help_outline, color: Colors.white70),
+          //     onPressed: () {}, // Optional: Add a help icon
+          //   ),
+          // ],
         ),
 
         // 2. Main Body with matching background
